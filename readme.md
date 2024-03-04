@@ -128,3 +128,10 @@ npm run start-api:dev
 ```
 
 then check `localhost:3001`
+
+9. When you are happy with the changes, just run
+
+```shell
+npm run deploy:dev
+```
+to deploy your changes to dev environment
