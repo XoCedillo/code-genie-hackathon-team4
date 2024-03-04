@@ -14,6 +14,7 @@ import { ITable } from 'aws-cdk-lib/aws-dynamodb'
 import { LogGroup } from 'aws-cdk-lib/aws-logs'
 import {
   getEnvironmentConfig,
+  getEnvironmentName,
   getIsDeletionProtectionEnabled,
   getIsSourceMapsEnabled,
   getRemovalPolicy,

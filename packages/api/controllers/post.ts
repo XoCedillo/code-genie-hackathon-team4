@@ -79,16 +79,18 @@ export async function listPosts({
   filter,
   index,
 }: ListPostsParams = {}) {
-  const postScanResponse = await scanAll({
-    entity: Post,
-    scanOptions: {
-      startKey: lastEvaluatedKey,
-      index,
-    },
-    maxItems: DEFAULT_PAGE_SIZE,
-    maxPages: 10,
-    filter,
-  })
+  const postScanResponse = index ?
+    await Post.query('Post', { limit: DEFAULT_PAGE_SIZE, startKey: lastEvaluatedKey, reverse: true, index })
+    : await scanAll({
+      entity: Post,
+      scanOptions: {
+        startKey: lastEvaluatedKey,
+        index,
+      },
+      maxItems: DEFAULT_PAGE_SIZE,
+      maxPages: 10,
+      filter,
+    })
   const postScanResponseItems = postScanResponse?.Items || []
   const postsUserIds = postScanResponseItems.map(post => post.userId).filter(Boolean)
 

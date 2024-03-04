@@ -20,7 +20,7 @@ x-codeGenie:
     showCreatedDateTime: true
 allOf:
   - type: object
-    $ref: '#/definitions/attributes'
+    $ref: "#/definitions/attributes"
 definitions:
   attributes:
     type: object
@@ -42,6 +42,11 @@ definitions:
       title:
         type: string
       comment:
+        type: string
+        x-codeGenie:
+          ui:
+            inputType: textarea
+      description:
         type: string
         x-codeGenie:
           ui:

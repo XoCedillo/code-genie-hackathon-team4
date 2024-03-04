@@ -27,6 +27,7 @@ const Post = new DynamoDbToolbox.Entity({
     url: 'string',
     title: 'string',
     comment: 'string',
+    description: 'string',
     upvotes: 'number',
   },
   table: PostTable,

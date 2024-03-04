@@ -740,6 +740,14 @@
                 }
               }
             },
+            "description": {
+              "type": "string",
+              "x-codeGenie": {
+                "ui": {
+                  "inputType": "textarea"
+                }
+              }
+            },
             "upvotes": {
               "type": "number",
               "readOnly": true

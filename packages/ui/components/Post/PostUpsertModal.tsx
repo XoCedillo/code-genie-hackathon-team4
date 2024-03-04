@@ -148,6 +148,12 @@ function PostUpsertForm({
       >
         <Input.TextArea showCount autoSize={{ minRows: 2 }} />
       </Form.Item>
+      <Form.Item
+        label='Description'
+        name='description'
+      >
+        <Input.TextArea showCount autoSize={{ minRows: 2 }} />
+      </Form.Item>
     </Form>
   )
 }
