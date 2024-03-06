@@ -29,13 +29,13 @@ export default function SideMenu() {
     icon: <AppstoreOutlined />,
     label: <Link href='/users'>Users</Link>,
   },{
-    key: 'posts',
-    icon: <AppstoreOutlined />,
-    label: <Link href='/posts'>Posts</Link>,
-  },{
     key: 'expenses',
     icon: <AppstoreOutlined />,
     label: <Link href='/expenses'>Expenses</Link>,
+  },{
+    key: 'incomes',
+    icon: <AppstoreOutlined />,
+    label: <Link href='/incomes'>Incomes</Link>,
   }, {
     key: '_spacer',
     type: 'divider',

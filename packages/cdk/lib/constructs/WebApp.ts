@@ -39,16 +39,6 @@ export default class WebApp extends Construct {
           status: RedirectStatus.REWRITE,
         },
         {
-          source: '/posts',
-          target: '/posts',
-          status: RedirectStatus.REWRITE,
-        },
-        {
-          source: '/posts/<postId>',
-          target: '/posts/[postId]',
-          status: RedirectStatus.REWRITE,
-        },
-        {
           source: '/expenses',
           target: '/expenses',
           status: RedirectStatus.REWRITE,
@@ -56,6 +46,16 @@ export default class WebApp extends Construct {
         {
           source: '/expenses/<expenseId>',
           target: '/expenses/[expenseId]',
+          status: RedirectStatus.REWRITE,
+        },
+        {
+          source: '/incomes',
+          target: '/incomes',
+          status: RedirectStatus.REWRITE,
+        },
+        {
+          source: '/incomes/<incomeId>',
+          target: '/incomes/[incomeId]',
           status: RedirectStatus.REWRITE,
         },
         {

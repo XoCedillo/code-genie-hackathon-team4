@@ -6,41 +6,41 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { Breadcrumb } from 'antd'
 import { HomeOutlined, AppstoreOutlined } from '@ant-design/icons'
-import PostDetails from '@/components/Post/PostDetails'
-import { useGetPostQuery } from '@/components/Post/postHooks'
+import IncomeDetails from '@/components/Income/IncomeDetails'
+import { useGetIncomeQuery } from '@/components/Income/incomeHooks'
 import getPageTitle from '@/ui/lib/getPageTitle'
 import AuthenticatedPage from '@/ui/components/layouts/AuthenticatedPage'
 
-export default function PostsDetailsPage() {
+export default function IncomesDetailsPage() {
   const router = useRouter()
   const {
-    postId,
+    incomeId,
   } = router.query
-  const getPostQuery = useGetPostQuery({ postId })
+  const getIncomeQuery = useGetIncomeQuery({ incomeId })
 
-  const post = getPostQuery.data?.data
+  const income = getIncomeQuery.data?.data
 
   return (
     <AuthenticatedPage>
       <Head>
-        <title>{getPageTitle({ pageTitle: post ? `${post.title} | Post` : 'Post' })}</title>
+        <title>{getPageTitle({ pageTitle: income ? `${income.title} | Income` : 'Income' })}</title>
       </Head>
       <Breadcrumb items={[
         {
           title: <Link href='/' passHref><HomeOutlined /></Link>,
         },
         {
-          title: <Link href='/posts' passHref>
-            <AppstoreOutlined />{' '}Posts
+          title: <Link href='/incomes' passHref>
+            <AppstoreOutlined />{' '}Incomes
           </Link>,
         },
         {
-          title: post?.title || post?.postId,
+          title: income?.title || income?.incomeId,
         },
       ]} />
       <div className='detailsContainer'>
-        <PostDetails
-          post={post}
+        <IncomeDetails
+          income={income}
         />
       </div>
       <style jsx>

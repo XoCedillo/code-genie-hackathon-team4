@@ -1,7 +1,7 @@
 $schema: http://json-schema.org/draft-07/schema#
-title: Expense
+title: Income
 x-codeGenie:
-  idProperty: expenseId
+  idProperty: incomeId
   nameProperty: title
   dynamodb:
     globalSecondaryIndexes:
@@ -12,11 +12,9 @@ x-codeGenie:
       #   partitionKey: entity
       #   sortKey: upvotes
   isRootEntity: true
-  hasMany:
-    Comment:
-      $ref: ./note.yml
-    # Category:
-    #   $ref: ./category.yml
+  # hasMany:
+  #   Comment:
+  #     $ref: ./note.yml
   ui:
     listView: LIST
     showCreatedDateTime: true
@@ -27,7 +25,7 @@ definitions:
   attributes:
     type: object
     properties:
-      expenseId:
+      incomeId:
         type: string
         readOnly: true
       userId:
@@ -45,29 +43,14 @@ definitions:
         x-codeGenie:
           ui:
             format: money
-      note:
+      description:
         type: string
         x-codeGenie:
           ui:
             inputType: textarea
-      category:
-        type: array
-        items:
-          enum:
-            - home
-            - food
-            - insurance
-        # type: string
-        # x-codeGenie:
-        #   idProperty: categoryId
-        #   nameProperty: name
-        #   dynamodb: {}
-        #   onCreate: REMAIN_ON_CURRENT_PAGE
-        #   buildDetailsPage: false
     required:
-      - expenseId
+      - incomeId
       - userId
       - title
       - ammount
-      - category
     additionalProperties: false

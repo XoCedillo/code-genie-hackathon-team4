@@ -5,12 +5,12 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { Breadcrumb, Button } from 'antd'
 import { HomeOutlined, AppstoreOutlined } from '@ant-design/icons'
-import ExpensesList from '@/components/Expense/ExpensesList'
-import ExpenseUpsertModal from '@/components/Expense/ExpenseUpsertModal'
+import IncomesList from '@/components/Income/IncomesList'
+import IncomeUpsertModal from '@/components/Income/IncomeUpsertModal'
 import getPageTitle from '@/ui/lib/getPageTitle'
 import AuthenticatedPage from '@/ui/components/layouts/AuthenticatedPage'
 
-export default function ExpensesMasterPage() {
+export default function IncomesMasterPage() {
   const [isUpsertModalVisible, setIsUpsertModalVisible] = useState(false)
 
   function showUpsertModal() {
@@ -20,7 +20,7 @@ export default function ExpensesMasterPage() {
   return (
     <AuthenticatedPage>
       <Head>
-        <title>{getPageTitle({ pageTitle: 'Expenses' })}</title>
+        <title>{getPageTitle({ pageTitle: 'Incomes' })}</title>
       </Head>
       <Breadcrumb items={[
         {
@@ -29,20 +29,20 @@ export default function ExpensesMasterPage() {
         {
           title: <>
             <AppstoreOutlined />
-            <span>Expenses</span>
+            <span>Incomes</span>
           </>,
         },
       ]} />
       <div className='toolbar'>
         <Button type='primary' onClick={showUpsertModal}>
-          Create Expense
+          Create Income
         </Button>
       </div>
-      <ExpenseUpsertModal
+      <IncomeUpsertModal
         isOpen={isUpsertModalVisible}
         setIsOpen={setIsUpsertModalVisible}
       />
-      <ExpensesList />
+      <IncomesList />
       <style jsx>
         {`
         .toolbar {
