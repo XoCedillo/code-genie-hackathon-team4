@@ -1,0 +1,73 @@
+$schema: http://json-schema.org/draft-07/schema#
+title: Expense
+x-codeGenie:
+  idProperty: expenseId
+  nameProperty: title
+  dynamodb:
+    globalSecondaryIndexes:
+      - name: Created
+        partitionKey: _et
+        sortKey: _ct
+      # - name: Upvotes
+      #   partitionKey: entity
+      #   sortKey: upvotes
+  isRootEntity: true
+  hasMany:
+    Comment:
+      $ref: ./note.yml
+    # Category:
+    #   $ref: ./category.yml
+  ui:
+    listView: LIST
+    showCreatedDateTime: true
+allOf:
+  - type: object
+    $ref: "#/definitions/attributes"
+definitions:
+  attributes:
+    type: object
+    properties:
+      expenseId:
+        type: string
+        readOnly: true
+      userId:
+        type: string
+        description: User who posted the expense
+        readOnly: true
+        x-codeGenie:
+          defaultValue: $currentUserId
+          foreignKey:
+            referencedEntity: User
+      title:
+        type: string
+      ammount:
+        type: number
+        x-codeGenie:
+          ui:
+            format: money
+      note:
+        type: string
+        x-codeGenie:
+          ui:
+            inputType: textarea
+      category:
+        type: array
+        items:
+          enum:
+            - home
+            - food
+            - insurance
+        # type: string
+        # x-codeGenie:
+        #   idProperty: categoryId
+        #   nameProperty: name
+        #   dynamodb: {}
+        #   onCreate: REMAIN_ON_CURRENT_PAGE
+        #   buildDetailsPage: false
+    required:
+      - expenseId
+      - userId
+      - title
+      - ammount
+      - category
+    additionalProperties: false
