@@ -7,9 +7,10 @@ x-codeGenie:
   defaultAuthRoute: /expenses
   entities:
     - user
-    - post
-    - comment
+    # - post
+    # - comment
     - expense
+    - income
     # - category
     - note
     # - commentUpvote
@@ -17,12 +18,14 @@ x-codeGenie:
 definitions:
   user:
     $ref: ./entities/user.yml
-  post:
-    $ref: ./entities/post.yml
-  comment:
-    $ref: ./entities/comment.yml
+  # post:
+  #   $ref: ./entities/post.yml
+  # comment:
+  #   $ref: ./entities/comment.yml
   expense:
     $ref: ./entities/expense.yml
+  income:
+    $ref: ./entities/income.yml
   note:
     $ref: ./entities/note.yml
   # category:

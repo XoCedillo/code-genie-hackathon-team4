@@ -216,408 +216,6 @@
         }
       }
     },
-    "/posts": {
-      "get": {
-        "operationId": "listPosts",
-        "summary": "List Posts",
-        "description": "Returns a list of Posts",
-        "tags": [
-          "list",
-          "Post"
-        ],
-        "parameters": [
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "description": "Maximum number of results to return",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Post listed",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Post"
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "post": {
-        "operationId": "createPost",
-        "summary": "Create Post",
-        "description": "Creates a new Post",
-        "tags": [
-          "create",
-          "Post"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "data",
-            "description": "Post data to be created.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Post"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Post created",
-            "schema": {
-              "$ref": "#/definitions/Post"
-            }
-          },
-          "400": {
-            "description": "Invalid input",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Post not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/posts/{postId}": {
-      "get": {
-        "operationId": "getPost",
-        "summary": "Get Post",
-        "description": "Returns a single Post",
-        "tags": [
-          "single",
-          "Post"
-        ],
-        "parameters": [
-          {
-            "name": "postId",
-            "in": "path",
-            "description": "ID of Post to return.",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Post returned",
-            "schema": {
-              "$ref": "#/definitions/Post"
-            }
-          },
-          "400": {
-            "description": "Invalid input",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Post not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "put": {
-        "operationId": "updatePost",
-        "summary": "Update Post",
-        "description": "Updates a Post",
-        "tags": [
-          "patch",
-          "update",
-          "Post"
-        ],
-        "parameters": [
-          {
-            "name": "postId",
-            "in": "path",
-            "description": "ID of Post to update.",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "in": "body",
-            "name": "data",
-            "description": "Post data to update.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Post"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Post updated",
-            "schema": {
-              "$ref": "#/definitions/Post"
-            }
-          },
-          "400": {
-            "description": "Invalid input",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Post not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "delete": {
-        "operationId": "deletePost",
-        "summary": "Delete Post",
-        "description": "Deletes a Post",
-        "tags": [
-          "delete",
-          "Post"
-        ],
-        "parameters": [
-          {
-            "name": "postId",
-            "in": "path",
-            "description": "ID of Post to delete.",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Post deleted",
-            "schema": {
-              "$ref": "#/definitions/Empty"
-            }
-          },
-          "404": {
-            "description": "Post not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/comments": {
-      "get": {
-        "operationId": "listComments",
-        "summary": "List Comments",
-        "description": "Returns a list of Comments",
-        "tags": [
-          "list",
-          "Comment"
-        ],
-        "parameters": [
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "description": "Maximum number of results to return",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Comment listed",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Comment"
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "post": {
-        "operationId": "createComment",
-        "summary": "Create Comment",
-        "description": "Creates a new Comment",
-        "tags": [
-          "create",
-          "Comment"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "data",
-            "description": "Comment data to be created.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Comment"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Comment created",
-            "schema": {
-              "$ref": "#/definitions/Comment"
-            }
-          },
-          "400": {
-            "description": "Invalid input",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Comment not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/comments/{commentId}": {
-      "get": {
-        "operationId": "getComment",
-        "summary": "Get Comment",
-        "description": "Returns a single Comment",
-        "tags": [
-          "single",
-          "Comment"
-        ],
-        "parameters": [
-          {
-            "name": "postId",
-            "in": "path",
-            "description": "ID of Comment to return.",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Comment returned",
-            "schema": {
-              "$ref": "#/definitions/Comment"
-            }
-          },
-          "400": {
-            "description": "Invalid input",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Comment not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "put": {
-        "operationId": "updateComment",
-        "summary": "Update Comment",
-        "description": "Updates a Comment",
-        "tags": [
-          "patch",
-          "update",
-          "Comment"
-        ],
-        "parameters": [
-          {
-            "name": "postId",
-            "in": "path",
-            "description": "ID of Comment to update.",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "in": "body",
-            "name": "data",
-            "description": "Comment data to update.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Comment"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Comment updated",
-            "schema": {
-              "$ref": "#/definitions/Comment"
-            }
-          },
-          "400": {
-            "description": "Invalid input",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Comment not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "delete": {
-        "operationId": "deleteComment",
-        "summary": "Delete Comment",
-        "description": "Deletes a Comment",
-        "tags": [
-          "delete",
-          "Comment"
-        ],
-        "parameters": [
-          {
-            "name": "postId",
-            "in": "path",
-            "description": "ID of Comment to delete.",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Comment deleted",
-            "schema": {
-              "$ref": "#/definitions/Empty"
-            }
-          },
-          "404": {
-            "description": "Comment not found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
     "/expenses": {
       "get": {
         "operationId": "listExpenses",
@@ -812,6 +410,207 @@
           },
           "404": {
             "description": "Expense not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/incomes": {
+      "get": {
+        "operationId": "listIncomes",
+        "summary": "List Incomes",
+        "description": "Returns a list of Incomes",
+        "tags": [
+          "list",
+          "Income"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Maximum number of results to return",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Income listed",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Income"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createIncome",
+        "summary": "Create Income",
+        "description": "Creates a new Income",
+        "tags": [
+          "create",
+          "Income"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "Income data to be created.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Income"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Income created",
+            "schema": {
+              "$ref": "#/definitions/Income"
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Income not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/incomes/{incomeId}": {
+      "get": {
+        "operationId": "getIncome",
+        "summary": "Get Income",
+        "description": "Returns a single Income",
+        "tags": [
+          "single",
+          "Income"
+        ],
+        "parameters": [
+          {
+            "name": "incomeId",
+            "in": "path",
+            "description": "ID of Income to return.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Income returned",
+            "schema": {
+              "$ref": "#/definitions/Income"
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Income not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateIncome",
+        "summary": "Update Income",
+        "description": "Updates a Income",
+        "tags": [
+          "patch",
+          "update",
+          "Income"
+        ],
+        "parameters": [
+          {
+            "name": "incomeId",
+            "in": "path",
+            "description": "ID of Income to update.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "data",
+            "description": "Income data to update.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Income"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Income updated",
+            "schema": {
+              "$ref": "#/definitions/Income"
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Income not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteIncome",
+        "summary": "Delete Income",
+        "description": "Deletes a Income",
+        "tags": [
+          "delete",
+          "Income"
+        ],
+        "parameters": [
+          {
+            "name": "incomeId",
+            "in": "path",
+            "description": "ID of Income to delete.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Income deleted",
+            "schema": {
+              "$ref": "#/definitions/Empty"
+            }
+          },
+          "404": {
+            "description": "Income not found",
             "schema": {
               "$ref": "#/definitions/Error"
             }
@@ -1042,75 +841,14 @@
     "user": {
       "$ref": "./entities/user.yml"
     },
-    "post": {
-      "$ref": "./entities/post.yml"
-    },
-    "comment": {
-      "$ref": "./entities/comment.yml"
-    },
     "expense": {
       "$ref": "./entities/expense.yml"
     },
+    "income": {
+      "$ref": "./entities/income.yml"
+    },
     "note": {
       "$ref": "./entities/note.yml"
-    },
-    "Comment": {
-      "title": "Comment",
-      "definitions": {
-        "attributes": {
-          "type": "object",
-          "properties": {
-            "postId": {
-              "type": "string",
-              "readOnly": true
-            },
-            "commentId": {
-              "type": "string",
-              "readOnly": true
-            },
-            "userId": {
-              "type": "string",
-              "description": "User who posted the comment",
-              "readOnly": true,
-              "x-codeGenie": {
-                "defaultValue": "$currentUserId",
-                "foreignKey": {
-                  "referencedEntity": "User"
-                }
-              }
-            },
-            "comment": {
-              "type": "string",
-              "x-codeGenie": {
-                "ui": {
-                  "inputType": "textarea"
-                }
-              }
-            },
-            "parentId": {
-              "type": "string",
-              "readOnly": true
-            },
-            "upvotes": {
-              "type": "number",
-              "readOnly": true
-            }
-          },
-          "required": [
-            "postId",
-            "commentId",
-            "userId",
-            "comment"
-          ],
-          "additionalProperties": false
-        }
-      },
-      "allOf": [
-        {
-          "type": "object",
-          "$ref": "#/definitions/attributes"
-        }
-      ]
     },
     "Expense": {
       "title": "Expense",
@@ -1180,6 +918,63 @@
         }
       ]
     },
+    "Income": {
+      "title": "Income",
+      "definitions": {
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "incomeId": {
+              "type": "string",
+              "readOnly": true
+            },
+            "userId": {
+              "type": "string",
+              "description": "User who posted the expense",
+              "readOnly": true,
+              "x-codeGenie": {
+                "defaultValue": "$currentUserId",
+                "foreignKey": {
+                  "referencedEntity": "User"
+                }
+              }
+            },
+            "title": {
+              "type": "string"
+            },
+            "ammount": {
+              "type": "number",
+              "x-codeGenie": {
+                "ui": {
+                  "format": "money"
+                }
+              }
+            },
+            "description": {
+              "type": "string",
+              "x-codeGenie": {
+                "ui": {
+                  "inputType": "textarea"
+                }
+              }
+            }
+          },
+          "required": [
+            "incomeId",
+            "userId",
+            "title",
+            "ammount"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "allOf": [
+        {
+          "type": "object",
+          "$ref": "#/definitions/attributes"
+        }
+      ]
+    },
     "Note": {
       "title": "Note",
       "definitions": {
@@ -1223,71 +1018,6 @@
             "commentId",
             "userId",
             "comment"
-          ],
-          "additionalProperties": false
-        }
-      },
-      "allOf": [
-        {
-          "type": "object",
-          "$ref": "#/definitions/attributes"
-        }
-      ]
-    },
-    "Post": {
-      "title": "Post",
-      "definitions": {
-        "attributes": {
-          "type": "object",
-          "properties": {
-            "postId": {
-              "type": "string",
-              "readOnly": true
-            },
-            "userId": {
-              "type": "string",
-              "description": "User who posted the link",
-              "readOnly": true,
-              "x-codeGenie": {
-                "defaultValue": "$currentUserId",
-                "foreignKey": {
-                  "referencedEntity": "User"
-                }
-              }
-            },
-            "url": {
-              "type": "string",
-              "format": "uri"
-            },
-            "title": {
-              "type": "string"
-            },
-            "comment": {
-              "type": "string",
-              "x-codeGenie": {
-                "ui": {
-                  "inputType": "textarea"
-                }
-              }
-            },
-            "description": {
-              "type": "string",
-              "x-codeGenie": {
-                "ui": {
-                  "inputType": "textarea"
-                }
-              }
-            },
-            "upvotes": {
-              "type": "number",
-              "readOnly": true
-            }
-          },
-          "required": [
-            "postId",
-            "userId",
-            "url",
-            "title"
           ],
           "additionalProperties": false
         }

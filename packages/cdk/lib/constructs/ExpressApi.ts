@@ -17,9 +17,8 @@ import { getEnvironmentConfig, getEnvironmentName, getIsSourceMapsEnabled } from
 interface ExpressApiProps {
   auth: Auth
   userTable: ITable
-  postTable: ITable
-  commentTable: ITable
   expenseTable: ITable
+  incomeTable: ITable
   noteTable: ITable
 }
 
@@ -53,9 +52,8 @@ export default class ExpressApi extends Construct {
       environment: {
         NODE_OPTIONS: isSourceMapsEnabled ? '--enable-source-maps' : '',
         USER_TABLE: props.userTable.tableName,
-        POST_TABLE: props.postTable.tableName,
-        COMMENT_TABLE: props.commentTable.tableName,
         EXPENSE_TABLE: props.expenseTable.tableName,
+        INCOME_TABLE: props.incomeTable.tableName,
         NOTE_TABLE: props.noteTable.tableName,
       },
     })
@@ -82,12 +80,10 @@ export default class ExpressApi extends Construct {
       resources: [
         props.userTable.tableArn,
         Fn.join('', [props.userTable.tableArn, '/index/*']),
-        props.postTable.tableArn,
-        Fn.join('', [props.postTable.tableArn, '/index/*']),
-        props.commentTable.tableArn,
-        Fn.join('', [props.commentTable.tableArn, '/index/*']),
         props.expenseTable.tableArn,
         Fn.join('', [props.expenseTable.tableArn, '/index/*']),
+        props.incomeTable.tableArn,
+        Fn.join('', [props.incomeTable.tableArn, '/index/*']),
         props.noteTable.tableArn,
         Fn.join('', [props.noteTable.tableArn, '/index/*']),
       ],
