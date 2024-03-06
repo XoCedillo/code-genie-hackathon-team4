@@ -6,8 +6,8 @@ x-codeGenie:
   dynamodb:
     globalSecondaryIndexes:
       - name: Created
-        partitionKey: _et
-        sortKey: _ct
+        partitionKey: _ex
+        sortKey: _et
       # - name: Upvotes
       #   partitionKey: entity
       #   sortKey: upvotes

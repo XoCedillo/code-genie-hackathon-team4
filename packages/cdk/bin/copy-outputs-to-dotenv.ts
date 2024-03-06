@@ -25,7 +25,9 @@ const apiDotEnv = `${SECRET_WARNING}
 NODE_ENV=${nodeEnv}
 USER_TABLE="${stackOutputs.UserTable}"
 POST_TABLE="${stackOutputs.PostTable}"
-COMMENT_TABLE="${stackOutputs.CommentTable}"`
+COMMENT_TABLE="${stackOutputs.CommentTable}"
+EXPENSE_TABLE="${stackOutputs.ExpenseTable}"
+NOTE_TABLE="${stackOutputs.NoteTable}"`
 
 writeFileSync(path.resolve(__dirname, `../../api/.env.${ENVIRONMENT}`), apiDotEnv)
 

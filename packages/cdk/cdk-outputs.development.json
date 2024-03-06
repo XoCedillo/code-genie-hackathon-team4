@@ -3,10 +3,12 @@
     "UserPoolClientId": "3un2hfi5qc277902u2r87bdvm2",
     "UserPoolId": "us-west-2_9twEx0nYq",
     "UserTable": "CuriousCrowd-development-UserTableD3CD785F-1WDLWKMADOQNG",
+    "NoteTable": "CuriousCrowd-development-NoteTableAB73D8B6-1XN62R2LJNBGS",
     "Region": "us-west-2",
     "ApiEndpoint": "https://2c9o8omszc.execute-api.us-west-2.amazonaws.com",
     "AmplifyUrl": "https://development.d1hbg6tknvy67c.amplifyapp.com",
     "CommentTable": "CuriousCrowd-development-CommentTableCE1DEE4A-855TRAP12MY2",
+    "ExpenseTable": "CuriousCrowd-development-ExpenseTableDE4A29FC-1UD44590AT21U",
     "PostTable": "CuriousCrowd-development-PostTable22E4A31B-19HA5X1F79NCN"
   }
 }

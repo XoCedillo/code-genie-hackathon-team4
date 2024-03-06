@@ -6,6 +6,8 @@ import WebApp from './constructs/WebApp'
 import UserTable from './constructs/tables/UserTable'
 import PostTable from './constructs/tables/PostTable'
 import CommentTable from './constructs/tables/CommentTable'
+import ExpenseTable from './constructs/tables/ExpenseTable'
+import NoteTable from './constructs/tables/NoteTable'
 
 export default class CuriousCrowdStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -14,6 +16,8 @@ export default class CuriousCrowdStack extends Stack {
     const userTable = new UserTable(this, 'UserTable')
     const postTable = new PostTable(this, 'PostTable')
     const commentTable = new CommentTable(this, 'CommentTable')
+    const expenseTable = new ExpenseTable(this, 'ExpenseTable')
+    const noteTable = new NoteTable(this, 'NoteTable')
     new WebApp(this, 'WebApp')
     const auth = new Auth(this, 'Auth', {
       userTable: userTable.table,
@@ -23,6 +27,8 @@ export default class CuriousCrowdStack extends Stack {
       userTable: userTable.table,
       postTable: postTable.table,
       commentTable: commentTable.table,
+      expenseTable: expenseTable.table,
+      noteTable: noteTable.table,
     })
 
     new CfnOutput(this, 'Region', { key: 'Region', value: Aws.REGION })

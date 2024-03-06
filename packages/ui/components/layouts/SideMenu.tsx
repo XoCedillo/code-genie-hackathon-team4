@@ -32,6 +32,10 @@ export default function SideMenu() {
     key: 'posts',
     icon: <AppstoreOutlined />,
     label: <Link href='/posts'>Posts</Link>,
+  },{
+    key: 'expenses',
+    icon: <AppstoreOutlined />,
+    label: <Link href='/expenses'>Expenses</Link>,
   }, {
     key: '_spacer',
     type: 'divider',

@@ -5,6 +5,8 @@ import { StatusCodes } from 'http-status-codes'
 import userRouter from './routes/users'
 import postRouter from './routes/posts'
 import postCommentRouter from './routes/post-comments'
+import expenseRouter from './routes/expenses'
+import expenseNoteRouter from './routes/expense-notes'
 import meRouter from './routes/me'
 
 import {
@@ -62,6 +64,8 @@ app.use('/', meRouter)
 app.use('/', userRouter)
 app.use('/', postRouter)
 app.use(postCommentRouter)
+app.use('/', expenseRouter)
+app.use(expenseNoteRouter)
 
 app.use((req, res, next) => {
   const error: Error & {statusCode?} = new Error('Route not found')

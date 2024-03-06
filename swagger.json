@@ -617,6 +617,408 @@
           }
         }
       }
+    },
+    "/expenses": {
+      "get": {
+        "operationId": "listExpenses",
+        "summary": "List Expenses",
+        "description": "Returns a list of Expenses",
+        "tags": [
+          "list",
+          "Expense"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Maximum number of results to return",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expense listed",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Expense"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createExpense",
+        "summary": "Create Expense",
+        "description": "Creates a new Expense",
+        "tags": [
+          "create",
+          "Expense"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "Expense data to be created.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Expense"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expense created",
+            "schema": {
+              "$ref": "#/definitions/Expense"
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Expense not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/expenses/{expenseId}": {
+      "get": {
+        "operationId": "getExpense",
+        "summary": "Get Expense",
+        "description": "Returns a single Expense",
+        "tags": [
+          "single",
+          "Expense"
+        ],
+        "parameters": [
+          {
+            "name": "expenseId",
+            "in": "path",
+            "description": "ID of Expense to return.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expense returned",
+            "schema": {
+              "$ref": "#/definitions/Expense"
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Expense not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateExpense",
+        "summary": "Update Expense",
+        "description": "Updates a Expense",
+        "tags": [
+          "patch",
+          "update",
+          "Expense"
+        ],
+        "parameters": [
+          {
+            "name": "expenseId",
+            "in": "path",
+            "description": "ID of Expense to update.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "data",
+            "description": "Expense data to update.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Expense"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expense updated",
+            "schema": {
+              "$ref": "#/definitions/Expense"
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Expense not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteExpense",
+        "summary": "Delete Expense",
+        "description": "Deletes a Expense",
+        "tags": [
+          "delete",
+          "Expense"
+        ],
+        "parameters": [
+          {
+            "name": "expenseId",
+            "in": "path",
+            "description": "ID of Expense to delete.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expense deleted",
+            "schema": {
+              "$ref": "#/definitions/Empty"
+            }
+          },
+          "404": {
+            "description": "Expense not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/notes": {
+      "get": {
+        "operationId": "listNotes",
+        "summary": "List Notes",
+        "description": "Returns a list of Notes",
+        "tags": [
+          "list",
+          "Note"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Maximum number of results to return",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Note listed",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Note"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createNote",
+        "summary": "Create Note",
+        "description": "Creates a new Note",
+        "tags": [
+          "create",
+          "Note"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "Note data to be created.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Note"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Note created",
+            "schema": {
+              "$ref": "#/definitions/Note"
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Note not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/notes/{noteId}": {
+      "get": {
+        "operationId": "getNote",
+        "summary": "Get Note",
+        "description": "Returns a single Note",
+        "tags": [
+          "single",
+          "Note"
+        ],
+        "parameters": [
+          {
+            "name": "expenseId",
+            "in": "path",
+            "description": "ID of Note to return.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Note returned",
+            "schema": {
+              "$ref": "#/definitions/Note"
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Note not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateNote",
+        "summary": "Update Note",
+        "description": "Updates a Note",
+        "tags": [
+          "patch",
+          "update",
+          "Note"
+        ],
+        "parameters": [
+          {
+            "name": "expenseId",
+            "in": "path",
+            "description": "ID of Note to update.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "data",
+            "description": "Note data to update.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Note"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Note updated",
+            "schema": {
+              "$ref": "#/definitions/Note"
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Note not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteNote",
+        "summary": "Delete Note",
+        "description": "Deletes a Note",
+        "tags": [
+          "delete",
+          "Note"
+        ],
+        "parameters": [
+          {
+            "name": "expenseId",
+            "in": "path",
+            "description": "ID of Note to delete.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Note deleted",
+            "schema": {
+              "$ref": "#/definitions/Empty"
+            }
+          },
+          "404": {
+            "description": "Note not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -645,6 +1047,12 @@
     },
     "comment": {
       "$ref": "./entities/comment.yml"
+    },
+    "expense": {
+      "$ref": "./entities/expense.yml"
+    },
+    "note": {
+      "$ref": "./entities/note.yml"
     },
     "Comment": {
       "title": "Comment",
@@ -685,6 +1093,128 @@
             },
             "upvotes": {
               "type": "number",
+              "readOnly": true
+            }
+          },
+          "required": [
+            "postId",
+            "commentId",
+            "userId",
+            "comment"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "allOf": [
+        {
+          "type": "object",
+          "$ref": "#/definitions/attributes"
+        }
+      ]
+    },
+    "Expense": {
+      "title": "Expense",
+      "definitions": {
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "expenseId": {
+              "type": "string",
+              "readOnly": true
+            },
+            "userId": {
+              "type": "string",
+              "description": "User who posted the expense",
+              "readOnly": true,
+              "x-codeGenie": {
+                "defaultValue": "$currentUserId",
+                "foreignKey": {
+                  "referencedEntity": "User"
+                }
+              }
+            },
+            "title": {
+              "type": "string"
+            },
+            "ammount": {
+              "type": "number",
+              "x-codeGenie": {
+                "ui": {
+                  "format": "money"
+                }
+              }
+            },
+            "note": {
+              "type": "string",
+              "x-codeGenie": {
+                "ui": {
+                  "inputType": "textarea"
+                }
+              }
+            },
+            "category": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "home",
+                  "food",
+                  "insurance"
+                ]
+              }
+            }
+          },
+          "required": [
+            "expenseId",
+            "userId",
+            "title",
+            "ammount",
+            "category"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "allOf": [
+        {
+          "type": "object",
+          "$ref": "#/definitions/attributes"
+        }
+      ]
+    },
+    "Note": {
+      "title": "Note",
+      "definitions": {
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "expenseId": {
+              "type": "string",
+              "readOnly": true
+            },
+            "noteId": {
+              "type": "string",
+              "readOnly": true
+            },
+            "userId": {
+              "type": "string",
+              "description": "User who posted the comment",
+              "readOnly": true,
+              "x-codeGenie": {
+                "defaultValue": "$currentUserId",
+                "foreignKey": {
+                  "referencedEntity": "User"
+                }
+              }
+            },
+            "comment": {
+              "type": "string",
+              "x-codeGenie": {
+                "ui": {
+                  "inputType": "textarea"
+                }
+              }
+            },
+            "parentId": {
+              "type": "string",
               "readOnly": true
             }
           },
