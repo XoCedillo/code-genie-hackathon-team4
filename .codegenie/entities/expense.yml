@@ -1,20 +1,22 @@
 $schema: http://json-schema.org/draft-07/schema#
-title: Post
+title: Expense
 x-codeGenie:
-  idProperty: postId
+  idProperty: expenseId
   nameProperty: title
   dynamodb:
     globalSecondaryIndexes:
       - name: Created
-        partitionKey: _et
-        sortKey: _ct
+        partitionKey: _ex
+        sortKey: _et
       # - name: Upvotes
       #   partitionKey: entity
       #   sortKey: upvotes
   isRootEntity: true
   hasMany:
     Comment:
-      $ref: ./comment.yml
+      $ref: ./note.yml
+    # Category:
+    #   $ref: ./category.yml
   ui:
     listView: LIST
     showCreatedDateTime: true
@@ -25,41 +27,47 @@ definitions:
   attributes:
     type: object
     properties:
-      postId:
+      expenseId:
         type: string
         readOnly: true
       userId:
         type: string
-        description: User who posted the link
+        description: User who posted the expense
         readOnly: true
         x-codeGenie:
           defaultValue: $currentUserId
           foreignKey:
             referencedEntity: User
-      url:
-        type: string
-        format: uri
       title:
         type: string
-      comment:
-        type: string
-        x-codeGenie:
-          ui:
-            inputType: textarea
-      description:
-        type: string
-        x-codeGenie:
-          ui:
-            inputType: textarea
-      upvotes:
+      ammount:
         type: number
-        readOnly: true
+        x-codeGenie:
+          ui:
+            format: money
+      note:
+        type: string
+        x-codeGenie:
+          ui:
+            inputType: textarea
+      category:
+        type: array
+        items:
+          enum:
+            - home
+            - food
+            - insurance
+        # type: string
         # x-codeGenie:
-        #   ui:
-        #     format: money
+        #   idProperty: categoryId
+        #   nameProperty: name
+        #   dynamodb: {}
+        #   onCreate: REMAIN_ON_CURRENT_PAGE
+        #   buildDetailsPage: false
     required:
-      - postId
+      - expenseId
       - userId
-      - url
       - title
+      - ammount
+      - category
     additionalProperties: false

@@ -17,7 +17,7 @@ export default function UnauthenticatedPage({
   useEffect(() => {
     if (currentUserQuery.data) {
       const searchParams = new URLSearchParams(window.location.search)
-      const redirect = searchParams.get('redirect') || '/posts'
+      const redirect = searchParams.get('redirect') || '/expenses'
       router.replace(redirect)
     }
   }, [currentUserQuery.data])

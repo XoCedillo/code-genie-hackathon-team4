@@ -7,24 +7,26 @@ import {
   Form,
   Modal,
   Input,
+  InputNumber,
+  Select,
 } from 'antd'
-import { useCreatePostMutation, useUpdatePostMutation } from './postHooks'
+import { useCreateExpenseMutation, useUpdateExpenseMutation } from './expenseHooks'
 
 const DEFAULT_VALUES = {
 }
 
-interface PostUpsertModalParams {
+interface ExpenseUpsertModalParams {
   isOpen: boolean
-  post?: any
+  expense?: any
   setIsOpen: any
 }
 
-export default function PostUpsertModal({
+export default function ExpenseUpsertModal({
   isOpen,
-  post,
+  expense,
   setIsOpen,
-}: PostUpsertModalParams) {
-  const postMutation = post ? useUpdatePostMutation() : useCreatePostMutation()
+}: ExpenseUpsertModalParams) {
+  const expenseMutation = expense ? useUpdateExpenseMutation() : useCreateExpenseMutation()
 
   function onCancel() {
     setIsOpen(false)
@@ -33,90 +35,90 @@ export default function PostUpsertModal({
   return (
     <Modal
       centered
-      title='Post'
+      title='Expense'
       open={isOpen}
       destroyOnClose
       onCancel={onCancel}
       footer={[
         <Button
           key='cancel'
-          disabled={postMutation.isLoading}
+          disabled={expenseMutation.isLoading}
           onClick={onCancel}
         >
           Cancel
         </Button>,
         <Button
           type='primary'
-          form='post'
+          form='expense'
           key='submit'
           htmlType='submit'
-          loading={postMutation.isLoading}
+          loading={expenseMutation.isLoading}
         >
-          {post ? 'Update Post' : 'Create Post'}
+          {expense ? 'Update Expense' : 'Create Expense'}
         </Button>,
       ]}
     >
-      <PostUpsertForm
-        post={post}
+      <ExpenseUpsertForm
+        expense={expense}
         onEdit={() => setIsOpen(false)}
-        postMutation={postMutation}
+        expenseMutation={expenseMutation}
       />
     </Modal>
   )
 }
 
-function PostUpsertForm({
-  post,
+function ExpenseUpsertForm({
+  expense,
   onEdit,
-  postMutation,
+  expenseMutation,
   shouldNavigateToDetailsPageOnCreate = true,
 }) {
   const router = useRouter()
-  const [postForm] = Form.useForm()
+  const [expenseForm] = Form.useForm()
 
   // When editing multiple records on the same page, we need to call resetFields,
   // otherwise the form lags behind, showing the previously selected record's values.
   // https://github.com/ant-design/ant-design/issues/22372
   useEffect(() => {
-    postForm.resetFields()
-  }, [post])
+    expenseForm.resetFields()
+  }, [expense])
 
   async function submitForm() {
-    const formValues = await postForm.validateFields()
-    let { postId } = post || {}
+    const formValues = await expenseForm.validateFields()
+    let { expenseId } = expense || {}
 
-    const response = post ? await postMutation.mutateAsync({
-      postId,
+    const response = expense ? await expenseMutation.mutateAsync({
+      expenseId,
       data: formValues,
-    }) : await postMutation.mutateAsync({
+    }) : await expenseMutation.mutateAsync({
       data: {
         ...formValues,
       },
     })
 
     if (response) {
-      if (!post && shouldNavigateToDetailsPageOnCreate) {
-        postId = response.data.data.postId
-        router.push(`/posts/${postId}`)
+      if (!expense && shouldNavigateToDetailsPageOnCreate) {
+        expenseId = response.data.data.expenseId
+        router.push(`/expenses/${expenseId}`)
       } else {
         onEdit()
       }
     }
   }
 
-  const initialValues = post ? {
-    ...post,
+  const initialValues = expense ? {
+    ...expense,
   } : DEFAULT_VALUES
 
   return (
     <Form
-      name='post'
+      name='expense'
       preserve={false}
       initialValues={initialValues}
-      form={postForm}
+      form={expenseForm}
       onFinish={submitForm}
       layout='vertical'
-      disabled={postMutation.isLoading}
+      disabled={expenseMutation.isLoading}
     >
       <Form.Item
         label='Title'
@@ -131,28 +133,38 @@ function PostUpsertForm({
         <Input />
       </Form.Item>
       <Form.Item
-        label='Url'
-        name='url'
+        label='Ammount'
+        name='ammount'
         rules={[
           {
             required: true,
-            message: 'Please enter url.',
+            message: 'Please enter ammount.',
           },
         ]}
       >
-        <Input />
+        <InputNumber />
       </Form.Item>
       <Form.Item
-        label='Comment'
-        name='comment'
+        label='Note'
+        name='note'
       >
         <Input.TextArea showCount autoSize={{ minRows: 2 }} />
       </Form.Item>
       <Form.Item
-        label='Description'
-        name='description'
+        label='Category'
+        name='category'
+        rules={[
+          {
+            required: true,
+            message: 'Please enter category.',
+          },
+        ]}
       >
-        <Input.TextArea showCount autoSize={{ minRows: 2 }} />
+        <Select showSearch placeholder='Select a category...' mode='multiple' showArrow>
+          <Select.Option value='home'>home</Select.Option>
+          <Select.Option value='food'>food</Select.Option>
+          <Select.Option value='insurance'>insurance</Select.Option>
+        </Select>
       </Form.Item>
     </Form>
   )

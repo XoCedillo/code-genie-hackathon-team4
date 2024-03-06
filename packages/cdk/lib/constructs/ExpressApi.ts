@@ -19,6 +19,8 @@ interface ExpressApiProps {
   userTable: ITable
   postTable: ITable
   commentTable: ITable
+  expenseTable: ITable
+  noteTable: ITable
 }
 
 export default class ExpressApi extends Construct {
@@ -53,6 +55,8 @@ export default class ExpressApi extends Construct {
         USER_TABLE: props.userTable.tableName,
         POST_TABLE: props.postTable.tableName,
         COMMENT_TABLE: props.commentTable.tableName,
+        EXPENSE_TABLE: props.expenseTable.tableName,
+        NOTE_TABLE: props.noteTable.tableName,
       },
     })
 
@@ -82,6 +86,10 @@ export default class ExpressApi extends Construct {
         Fn.join('', [props.postTable.tableArn, '/index/*']),
         props.commentTable.tableArn,
         Fn.join('', [props.commentTable.tableArn, '/index/*']),
+        props.expenseTable.tableArn,
+        Fn.join('', [props.expenseTable.tableArn, '/index/*']),
+        props.noteTable.tableArn,
+        Fn.join('', [props.noteTable.tableArn, '/index/*']),
       ],
     })
     lambdaFunction.addToRolePolicy(dynamoDBReadWritePolicy)

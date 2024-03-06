@@ -70,7 +70,7 @@ export function useSignUpMutation() {
 
     if (process.env.NEXT_PUBLIC_AUTO_VERIFY_USERS) {
       await signInMutation.mutateAsync({ email, password })
-      router.push('/posts')
+      router.push('/expenses')
       return
     }
 

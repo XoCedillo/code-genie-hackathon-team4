@@ -49,6 +49,16 @@ export default class WebApp extends Construct {
           status: RedirectStatus.REWRITE,
         },
         {
+          source: '/expenses',
+          target: '/expenses',
+          status: RedirectStatus.REWRITE,
+        },
+        {
+          source: '/expenses/<expenseId>',
+          target: '/expenses/[expenseId]',
+          status: RedirectStatus.REWRITE,
+        },
+        {
           source: '</^[^.]+$|\\.(?!(css|gif|ico|jpg|webp|js|png|txt|svg|woff|woff2|ttf|map|json)$)([^.]+$)/>',
           target: '/index',
           status: RedirectStatus.REWRITE,

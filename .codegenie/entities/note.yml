@@ -1,20 +1,13 @@
 $schema: http://json-schema.org/draft-07/schema#
-title: Post
+title: Note
 x-codeGenie:
-  idProperty: postId
-  nameProperty: title
+  idProperty: noteId
+  nameProperty: userId
   dynamodb:
-    globalSecondaryIndexes:
-      - name: Created
-        partitionKey: _et
-        sortKey: _ct
-      # - name: Upvotes
-      #   partitionKey: entity
-      #   sortKey: upvotes
-  isRootEntity: true
-  hasMany:
-    Comment:
-      $ref: ./comment.yml
+    partitionKey: expenseId
+    sortKey: noteId
+  onCreate: REMAIN_ON_CURRENT_PAGE
+  buildDetailsPage: false
   ui:
     listView: LIST
     showCreatedDateTime: true
@@ -25,41 +18,43 @@ definitions:
   attributes:
     type: object
     properties:
-      postId:
+      expenseId:
+        type: string
+        readOnly: true
+      noteId:
         type: string
         readOnly: true
       userId:
         type: string
-        description: User who posted the link
+        description: User who posted the comment
         readOnly: true
         x-codeGenie:
           defaultValue: $currentUserId
           foreignKey:
             referencedEntity: User
-      url:
-        type: string
-        format: uri
-      title:
-        type: string
+      # commentDateTime:
+      #   type: string
+      #   format: date-time
+      #   readOnly: true
+      #   x-codeGenie:
+      #     defaultValue: $now
       comment:
         type: string
         x-codeGenie:
           ui:
             inputType: textarea
-      description:
+      parentId:
         type: string
-        x-codeGenie:
-          ui:
-            inputType: textarea
-      upvotes:
-        type: number
         readOnly: true
-        # x-codeGenie:
-        #   ui:
-        #     format: money
+      # upvotes:
+      #   type: number
+      #   readOnly: true
+      #   # x-codeGenie:
+      #   ui:
+      #     format: money
     required:
       - postId
+      - commentId
       - userId
-      - url
-      - title
+      - comment
     additionalProperties: false

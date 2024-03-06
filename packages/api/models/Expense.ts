@@ -1,13 +1,13 @@
 import * as DynamoDbToolbox from 'dynamodb-toolbox'
 import { assertHasRequiredEnvVars } from '@/common/required-env-vars'
 import { dynamoDbDocumentClient } from '../utils/dynamodb'
-import { POST_TABLE } from '../config'
+import { EXPENSE_TABLE } from '../config'
 
-assertHasRequiredEnvVars(['POST_TABLE'])
+assertHasRequiredEnvVars(['EXPENSE_TABLE'])
 
-export const PostTable = new DynamoDbToolbox.Table({
-  name: POST_TABLE,
-  partitionKey: 'postId',
+export const ExpenseTable = new DynamoDbToolbox.Table({
+  name: EXPENSE_TABLE,
+  partitionKey: 'expenseId',
   DocumentClient: dynamoDbDocumentClient,
   indexes: {
     Created: {
@@ -17,20 +17,19 @@ export const PostTable = new DynamoDbToolbox.Table({
   },
 })
 
-const Post = new DynamoDbToolbox.Entity({
-  name: 'Post',
+const Expense = new DynamoDbToolbox.Entity({
+  name: 'Expense',
   attributes: {
-    postId: {
+    expenseId: {
       partitionKey: true,
     },
     userId: 'string',
-    url: 'string',
     title: 'string',
-    comment: 'string',
-    description: 'string',
-    upvotes: 'number',
+    ammount: 'number',
+    note: 'string',
+    category: 'list',
   },
-  table: PostTable,
+  table: ExpenseTable,
 })
 
-export default Post
+export default Expense

@@ -39,5 +39,9 @@ export default function PostData({ post, minColSpan = 8 }){
       <div><strong>Comment</strong></div>
       <div style={{whiteSpace: 'pre-line'}}>{post.comment}</div>
     </Col>
+    <Col xs={24}>
+      <div><strong>Description</strong></div>
+      <div style={{whiteSpace: 'pre-line'}}>{post.description}</div>
+    </Col>
   </Row>
 }
