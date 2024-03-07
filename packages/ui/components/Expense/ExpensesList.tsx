@@ -2,10 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import {
-  Button,
-  List,
-} from 'antd'
+import { Button, List } from 'antd'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { useListExpensesQuery } from './expenseHooks'
 import ExpenseData from './ExpenseData'
@@ -15,11 +12,14 @@ import { usePages } from '../../lib/usePages'
 import { DEFAULT_PAGE_SIZE } from '../../../common/pagination'
 
 export default function ExpensesList() {
-  const [selectedForEdit, setSelectedForEdit] = useState<any|null>()
-  const [selectedForDelete, setSelectedForDelete] = useState<any|null>()
+  const [selectedForEdit, setSelectedForEdit] = useState<any | null>()
+  const [selectedForDelete, setSelectedForDelete] = useState<any | null>()
   const [currentPageIndex, setCurrentPageIndex] = useState(0)
-  const [previousPage, setPreviousPage] = useState<any|null>()
-  const listExpensesQuery = useListExpensesQuery({ page: currentPageIndex, lastEvaluatedKey: previousPage?.lastEvaluatedKey })
+  const [previousPage, setPreviousPage] = useState<any | null>()
+  const listExpensesQuery = useListExpensesQuery({
+    page: currentPageIndex,
+    lastEvaluatedKey: previousPage?.lastEvaluatedKey,
+  })
   const expenses = listExpensesQuery?.data?.data
   const { pages, totalPagedItemsPlusOneIfHasMorePages } = usePages({
     items: expenses,
@@ -46,55 +46,36 @@ export default function ExpensesList() {
         expense={selectedForDelete}
       />
       <List
+        // style={{ paddingLeft: "4.5rem", paddingRight: "4.5rem" }}
         loading={listExpensesQuery.isLoading}
         itemLayout='vertical'
         dataSource={expenses}
         pagination={{
           pageSize: DEFAULT_PAGE_SIZE,
-          onChange: onPaginate, total: totalPagedItemsPlusOneIfHasMorePages,
+          onChange: onPaginate,
+          total: totalPagedItemsPlusOneIfHasMorePages,
         }}
         renderItem={(expense) => (
           <List.Item
             key={expense.expenseId}
-            actions={[
-              <Button
-                key='edit'
-                icon={<EditOutlined />}
-                onClick={() => setSelectedForEdit(expense)}
-              />, <Button
-                key='delete'
-                icon={<DeleteOutlined />}
-                onClick={() => setSelectedForDelete(expense)}
-                danger
-              />,
-            ]}
+            // actions={[
+            //   <Button
+            //     key="edit"
+            //     icon={<EditOutlined />}
+            //     onClick={() => setSelectedForEdit(expense)}
+            //   />,
+            //   <Button
+            //     key="delete"
+            //     icon={<DeleteOutlined />}
+            //     onClick={() => setSelectedForDelete(expense)}
+            //     danger
+            //   />,
+            // ]}
           >
-            <List.Item.Meta
-              title={<CardTitle
-                expense={expense}
-                expenseId={expense.expenseId}
-              />}
-            />
             <ExpenseData expense={expense} />
           </List.Item>
         )}
       />
     </>
   )
-}
-
-function CardTitle({ expense, expenseId }) {
-  const title = expense.title || expenseId
-
-  return <div 
-    style={{
-      textOverflow: 'ellipsis',
-      overflow: 'hidden',
-      maxWidth: '100%',
-      display: 'flex',
-      alignItems: 'center',
-    }}
-  >
-    <Link href={`/expenses/${expenseId}`}>{title}</Link>
-  </div>
 }
