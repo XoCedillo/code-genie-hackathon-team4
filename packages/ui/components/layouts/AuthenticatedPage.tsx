@@ -3,11 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import baseTheme from '../../themes/base'
 import { ThemeContext } from '../../themes/theme-provider'
-import {
-  Image,
-  Layout,
-  Divider,
-} from 'antd'
+import { Image, Layout, Divider } from 'antd'
 import SideMenu from './SideMenu'
 import getRedirectToLoginPageUrl from '../../lib/getRedirectRoute'
 import { useCurrentUserQuery } from '../Me/meHooks'
@@ -18,77 +14,85 @@ export default function AuthenticatedPage({ children }) {
   const { theme } = useContext<any>(ThemeContext)
   useUnauthenticatedRedirect()
 
-  return (<>
-    <Layout className='topLayout' hasSider>
-      <Layout.Sider className='sider' breakpoint='md' collapsedWidth={0} theme={theme}>
-        <div style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
-          <div style={{flex: 1, display: 'flex', flexDirection: 'column'}}>
-            <Link href='/' passHref style={{display: 'block', textAlign: 'center'}}>
-              <Logo />
-            </Link>
-            <Divider style={{margin: '2px 0'}} />
-            <SideMenu />
+  const bgColor = theme === 'light' && 'white'
+
+  return (
+    <>
+      <Layout className='topLayout' hasSider>
+        <Layout.Sider
+          className='sider'
+          breakpoint='md'
+          collapsedWidth={0}
+          theme={theme}
+        >
+          <div
+            style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+          >
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+              <Link
+                href='/'
+                passHref
+                style={{ display: 'block', textAlign: 'center' }}
+              >
+                <Logo />
+              </Link>
+              <Divider style={{ margin: '2px 0' }} />
+              <SideMenu />
+            </div>
           </div>
-        </div>
-      </Layout.Sider>
-      <Layout className='siteLayout'>
-        <Layout.Content className='mainContent'>
-          {children}
-        </Layout.Content>
+        </Layout.Sider>
+        <Layout className='siteLayout'>
+          <Layout.Content className='mainContent'>{children}</Layout.Content>
+        </Layout>
       </Layout>
-    </Layout>
-    <style jsx global>
-      {`
-        body {
-          margin: 0;
-        }
+      <style jsx global>
+        {`
+          body {
+            margin: 0;
+          }
 
-        .topLayout {
-          min-height: 100vh;
-        }
+          .topLayout {
+            min-height: 100vh;
+          }
 
-        .ant-layout .ant-layout-sider-children {
-          height: 100vh;
-          overflow-y: auto;
-        }
+          .ant-layout .ant-layout-sider-children {
+            height: 100vh;
+            overflow-y: auto;
+          }
 
-        .ant-layout .ant-layout-sider-zero-width-trigger {
-          top: 0;
-        }
+          .ant-layout .ant-layout-sider-zero-width-trigger {
+            top: 0;
+          }
 
-        .siteLayout {
-          height: 100vh;
-          overflow: auto;
-        }
+          .siteLayout {
+            height: 100vh;
+            overflow: auto;
+            background: ${bgColor};
+          }
 
-        .ant-layout-content.mainContent {
-          padding: 8px;
-          max-width: 1400px;
-          width: 100%;
-          margin: auto;
-          display: flex;
-          flex-direction: column;
-          padding-bottom: ${BASE_FONT_SIZE}px;
-          min-height: auto;
-        }
+          .ant-layout-content.mainContent {
+            padding: 8px;
+            max-width: 1400px;
+            width: 100%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: ${BASE_FONT_SIZE}px;
+            min-height: auto;
+          }
 
-        .ant-breadcrumb {
-          margin-bottom: ${BASE_FONT_SIZE}px;
-        }
+          .ant-breadcrumb {
+            margin-bottom: ${BASE_FONT_SIZE}px;
+          }
         `}
-    </style>
-  </>
+      </style>
+    </>
   )
 }
 
 const Logo = () => (
   <>
-    <Image
-      className='logo'
-      src='/logo.png'
-      alt='logo'
-      preview={false}
-    />
+    <Image className='logo' src='/logo.png' alt='logo' preview={false} />
     <style jsx global>
       {`
         a {

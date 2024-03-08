@@ -1,0 +1,6 @@
+{
+  "singleQuote": true,
+  "prefer-single": true,
+  "semi": false,
+  "jsxSingleQuote": true
+}

@@ -31,6 +31,7 @@
     "@ant-design/icons": "^5.1.4",
     "@tanstack/react-query": "^4.29.19",
     "antd": "^5.9.0",
+    "apexcharts": "^3.46.0",
     "aws-amplify": "^6.0.13",
     "aws-amplify-react": "^4.1.22",
     "dayjs": "^1.11.7",
@@ -38,6 +39,7 @@
     "lodash.debounce": "^4.0.8",
     "next": "^13.1.6",
     "react": "^18.2.0",
+    "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",
     "styled-jsx": "^5.1.2"
   },
